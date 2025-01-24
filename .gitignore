@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+Portal-Teleport-Demo/Library/
+Portal-Teleport-Demo//[Tt]emp/
+Portal-Teleport-Demo//[Oo]bj/
+Portal-Teleport-Demo//[Bb]uild/
+Portal-Teleport-Demo//[Bb]uilds/
+Portal-Teleport-Demo//[Ll]ogs/
+Portal-Teleport-Demo//[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
