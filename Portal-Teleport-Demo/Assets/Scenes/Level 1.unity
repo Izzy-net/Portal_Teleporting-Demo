@@ -2782,7 +2782,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341979336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7954d79fe33d7944917894bf5d3b051, type: 3}
+  m_Script: {fileID: 11500000, guid: 1321863655028de49b8928eb3ae7d2a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 237013426}
