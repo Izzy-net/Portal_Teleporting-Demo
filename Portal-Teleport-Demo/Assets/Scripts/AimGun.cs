@@ -7,8 +7,12 @@ public class AimGun : MonoBehaviour
     [SerializeField] GameObject gun;
     Vector2 mousePosition;
     Vector2 direction;
-    float minRot = -160;
-    float maxRot = 130;
+    float angle;
+    [SerializeField] float minRot = -130;
+    [SerializeField] float maxRot = 130;
+    float compareAngle = 0f;
+    float addToRot = 80;
+    float addToCompare = -180;
     void Update()
     {
         HandleGunAim();
@@ -18,19 +22,33 @@ public class AimGun : MonoBehaviour
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-        var angle = Mathf.Atan2(mousePosition.y - gun.transform.position.y, mousePosition.x - gun.transform.position.x);
+        angle = Mathf.Atan2(mousePosition.y - gun.transform.position.y, mousePosition.x - gun.transform.position.x) * Mathf.Rad2Deg;
         
-        Debug.Log(angle);
+        if (transform.localScale.x == -1)
+        {
+            angle *= -1;
+        }
 
-        if (transform.localScale.x == 1)
+        if (angle > minRot && angle < compareAngle)
         {
-            Mathf.Clamp(angle, minRot, maxRot);
-            gun.transform.localRotation = quaternion.Euler(0,0,angle);
+            //angle = minRot;
         }
-        else if (transform.localScale.x == -1)
+        else if (angle > -compareAngle && angle < maxRot)
         {
-            Mathf.Clamp(angle, minRot + 180, maxRot + 180);
-            gun.transform.localRotation = quaternion.Euler(0,0,-angle);
+            //angle = maxRot;
         }
+        Debug.Log(angle);
+        Debug.Log("Compare Angle =  " +compareAngle);
+        Debug.Log("maxRot = " + maxRot + "minRot = " + minRot);
+        gun.transform.localRotation = Quaternion.Euler(0,0,angle);
+    }
+
+    public void ChangeForOtherAxisSide()
+    {
+        addToRot *= -1;
+        addToCompare *= -1;
+        minRot -= addToRot;
+        maxRot += addToRot;
+        compareAngle += addToCompare;
     }
 }

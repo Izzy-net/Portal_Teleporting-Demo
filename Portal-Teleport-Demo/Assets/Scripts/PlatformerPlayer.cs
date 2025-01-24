@@ -14,11 +14,13 @@ public class PlatformerPlayer : MonoBehaviour
     [SerializeField] float jumpHeight = 1f;
     Vector2 moveInput;
     [SerializeField] LayerMask canJump;
+    private float currentDirection = -1;
 
     [Header("Sprite Control")]
     [SerializeField] LayerMask canRun;
     Animator myAnimator;
     private bool isRunning;
+    AimGun aimGun;
     
     [Header("Shooting")]
     [SerializeField] GameObject bulletObject;
@@ -29,6 +31,7 @@ public class PlatformerPlayer : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<BoxCollider2D>();
+        aimGun = GetComponent<AimGun>();
         myAnimator = GetComponentInChildren<Animator>();
     }
 
@@ -53,9 +56,11 @@ public class PlatformerPlayer : MonoBehaviour
     private void Move()
     {
         myRigidbody.linearVelocityX = moveInput.x * moveSpeed;
-        if (myRigidbody.linearVelocityX != 0)
+        if (myRigidbody.linearVelocityX != 0 && Mathf.Sign(moveInput.x) != currentDirection)
         {
+            Debug.Log(Mathf.Sign(moveInput.x));
             FlipSprite();
+            currentDirection = Mathf.Sign(moveInput.x);
         }
     }
 
@@ -94,6 +99,7 @@ public class PlatformerPlayer : MonoBehaviour
     {
         transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.linearVelocityX) * -1, 1);
         gun.transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.linearVelocityX) * -1, 1);
+        aimGun.ChangeForOtherAxisSide();
     }
 
     public void Damage(float damageAmount)

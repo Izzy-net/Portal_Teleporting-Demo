@@ -143,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237013426}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.31, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -151,7 +151,7 @@ Transform:
   - {fileID: 574010528}
   - {fileID: 870335219}
   m_Father: {fileID: 1341979338}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284669928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2786,6 +2786,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 237013426}
+  minRot: -130
+  maxRot: 130
 --- !u!1 &1362734239
 GameObject:
   m_ObjectHideFlags: 0
