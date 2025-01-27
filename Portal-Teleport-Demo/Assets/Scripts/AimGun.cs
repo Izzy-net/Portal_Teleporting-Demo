@@ -10,9 +10,6 @@ public class AimGun : MonoBehaviour
     float angle;
     [SerializeField] float minRot = -130;
     [SerializeField] float maxRot = 130;
-    float compareAngle = 0f;
-    float addToRot = 80;
-    float addToCompare = -180;
     void Update()
     {
         HandleGunAim();
@@ -27,28 +24,21 @@ public class AimGun : MonoBehaviour
         if (transform.localScale.x == -1)
         {
             angle *= -1;
+
+            if (angle < 130 && angle > 0)
+            {
+                angle = 130;
+            }
+            else if (angle > -130 && angle < 0)
+            {
+                angle = -130;
+            }
+        }
+        else
+        {
+            angle = Mathf.Clamp(angle, -50, 50);
         }
 
-        if (angle > minRot && angle < compareAngle)
-        {
-            //angle = minRot;
-        }
-        else if (angle > -compareAngle && angle < maxRot)
-        {
-            //angle = maxRot;
-        }
-        Debug.Log(angle);
-        Debug.Log("Compare Angle =  " +compareAngle);
-        Debug.Log("maxRot = " + maxRot + "minRot = " + minRot);
         gun.transform.localRotation = Quaternion.Euler(0,0,angle);
-    }
-
-    public void ChangeForOtherAxisSide()
-    {
-        addToRot *= -1;
-        addToCompare *= -1;
-        minRot -= addToRot;
-        maxRot += addToRot;
-        compareAngle += addToCompare;
     }
 }

@@ -14,7 +14,7 @@ public class PlatformerPlayer : MonoBehaviour
     [SerializeField] float jumpHeight = 1f;
     Vector2 moveInput;
     [SerializeField] LayerMask canJump;
-    private float currentDirection = -1;
+    private float currentDirection = 1;
 
     [Header("Sprite Control")]
     [SerializeField] LayerMask canRun;
@@ -58,7 +58,6 @@ public class PlatformerPlayer : MonoBehaviour
         myRigidbody.linearVelocityX = moveInput.x * moveSpeed;
         if (myRigidbody.linearVelocityX != 0 && Mathf.Sign(moveInput.x) != currentDirection)
         {
-            Debug.Log(Mathf.Sign(moveInput.x));
             FlipSprite();
             currentDirection = Mathf.Sign(moveInput.x);
         }
@@ -85,7 +84,7 @@ public class PlatformerPlayer : MonoBehaviour
         }
     }
 
-    private void OnFire()
+    private void OnAttack()
     {
         Shoot();
     }
@@ -97,9 +96,8 @@ public class PlatformerPlayer : MonoBehaviour
 
     private void FlipSprite()
     {
-        transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.linearVelocityX) * -1, 1);
-        gun.transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.linearVelocityX) * -1, 1);
-        aimGun.ChangeForOtherAxisSide();
+        transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.linearVelocityX), 1);
+        gun.transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.linearVelocityX), 1);
     }
 
     public void Damage(float damageAmount)
