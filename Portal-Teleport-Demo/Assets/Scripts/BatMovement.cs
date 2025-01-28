@@ -1,12 +1,22 @@
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class BatMovement : MonoBehaviour
 {
-    [SerializeField] List<GameObject> pathPoints = new List<GameObject>();
+    [SerializeField] Transform path;
+    List<Transform> pathPoints = new List<Transform>();
     int listIndex = 0;
     Transform targetPoint;
     [SerializeField] float moveSpeed = 1f;
+
+    private void Awake() 
+    {
+        foreach (Transform child in path)
+        {
+            pathPoints.Add(child);
+        }
+    }
 
     void Start()
     {
@@ -36,13 +46,18 @@ public class BatMovement : MonoBehaviour
 
     private void OnDrawGizmos() 
     {
+        foreach (Transform child in path)
+        {
+            pathPoints.Add(child);
+        }
+
         for (int i = 0; i < pathPoints.Count; i++)
         {
-            Gizmos.DrawWireSphere(pathPoints[i].transform.position, 0.5f);
+            Gizmos.DrawWireSphere(pathPoints[i].position, 0.5f);
             if (i > 0)
             {
-                Gizmos.DrawLine(pathPoints[i].transform.position, pathPoints[i-1].transform.position);
+                Gizmos.DrawLine(pathPoints[i].position, pathPoints[i-1].position);
             }
-        }       
+        }  
     }
 }

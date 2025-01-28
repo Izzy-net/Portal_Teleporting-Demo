@@ -202,4 +202,4 @@ MonoBehaviour:
   bulletDamage: 10
   canDestroyBullet:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
