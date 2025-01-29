@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlatformerPlayer : MonoBehaviour
+public class PlatformerPlayer : MonoBehaviour, IDamageable
 {
     [Header("General")]
     [SerializeField] float health = 30f;
@@ -20,7 +20,6 @@ public class PlatformerPlayer : MonoBehaviour
     [SerializeField] LayerMask canRun;
     Animator myAnimator;
     private bool isRunning;
-    AimGun aimGun;
     
     [Header("Shooting")]
     [SerializeField] GameObject bulletObject;
@@ -31,7 +30,6 @@ public class PlatformerPlayer : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<BoxCollider2D>();
-        aimGun = GetComponent<AimGun>();
         myAnimator = GetComponentInChildren<Animator>();
     }
 
